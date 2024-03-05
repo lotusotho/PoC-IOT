@@ -16,4 +16,3 @@ ReqTemp();
 ReqPers();
 ReqLuz();
 ReqRumba();
-console.log("JSON entero: ", storeData)
