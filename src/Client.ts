@@ -1,65 +1,35 @@
-const http = require('http');
-
-const interval = 2000;
-
-export function ReqTemp() {
-    setInterval(() => {
-        http.get('http://localhost:3000/temperature', (res: any) => {
-            try {
-                res.on('data', (data: any) => {
-                    console.log('\n');
-                    console.log('Comienzan los datos')
-                    console.log('--------------------------------')
-                    console.log('La temperatura es de: ' + JSON.parse(data).temperature + ' ºC');
-                })
-            } catch (e: any) {
-                console.error("Error consiguiendo JSON: ", e)
-            }
+export const ReqTemp = async() => {
+    await fetch('http://localhost:3000/temperatura')
+        .then(resp => resp.json())
+        .then((data: any) => {
+                console.log('La temperatura es de: ' + data.temperatura + ' ºC');
         })
-    }, interval)
+        .catch(error => console.log('Ha habido un error: ' + error))
 }
 
-export function ReqPers() {
-    setInterval(() => {
-        http.get('http://localhost:3000/persianas', (res: any) => {
-            try {
-                res.on('data', (data: any) => {
-                    console.log('\n');
-                    console.log('Las persianas estan: ', JSON.parse(data).persianas);
-                })
-            } catch (e: any) {
-                console.error("Error consiguiendo JSON: ", e)
-            }
+export const ReqPers = async() => {
+    await fetch('http://localhost:3000/persianas')
+        .then(resp => resp.json())
+        .then((data: any) => {
+                console.log('Las persianas estan en modo: ' + data.persianas);
         })
-    }, interval)
+        .catch(error => console.log('Ha habido un error: ' + error))
 }
 
-export function ReqLuz() {
-    setInterval(() => {
-        http.get('http://localhost:3000/luz', (res: any) => {
-            try {
-                res.on('data', (data: any) => {
-                    console.log('\n');
-                    console.log('El porcentaje de la luz es de: ', JSON.parse(data).luz + ' %');
-                })
-            } catch (e: any) {
-                console.error("Error consiguiendo JSON: ", e)
-            }
+export const ReqLuz = async() => {
+    await fetch('http://localhost:3000/luz')
+        .then(resp => resp.json())
+        .then((data: any) => {
+                console.log('El porcentaje de la luz es: ' + data.luz + ' %');
         })
-    }, interval)
+        .catch(error => console.log('Ha habido un error: ' + error))
 }
 
-export function ReqRumba() {
-    setInterval(() => {
-        http.get('http://localhost:3000/rumba', (res: any) => {
-            try {
-                res.on('data', (data: any) => {
-                    console.log('\n');
-                    console.log('Las coordenadas del rumba son: ', JSON.parse(data).rumba);
-                })
-            } catch (e: any) {
-                console.error("Error consiguiendo JSON: ", e)
-            }
+export const ReqRumba = async() => {
+    await fetch('http://localhost:3000/rumba')
+        .then(resp => resp.json())
+        .then((data: any) => {
+                console.log('Las coordenadas del rumba son: ' + data.rumba[0] + ' ' + data.rumba[1]);
         })
-    }, interval)
+        .catch(error => console.log('Ha habido un error: ' + error))
 }

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ClientData } from './ClientData';
 
 const express = require('express');
 
@@ -7,20 +8,15 @@ const bodyParse = require('body-parser');
 const app = express();
 app.use(bodyParse.json());
 
-export let storeData = {
-    temperature: 0.0,
-    persianas: 0.0,
-    luz: 0.0,
-    rumba: [0, 0]
-};
+export const storeData = new ClientData(0, 0, 0, [0, 0]);
 
 export function Server() {
     // Request POST
 
-    app.post('/temperature', (req: Request, res: Response) => {
-        const temperature = req.body.temperature;
+    app.post('/temperatura', (req: Request, res: Response) => {
+        const temperatura = req.body.temperatura;
 
-        storeData.temperature = temperature;
+        storeData.temperatura = temperatura;
 
         res.sendStatus(200);
     })
@@ -51,8 +47,8 @@ export function Server() {
 
     // Request GET
 
-    app.get('/temperature', (req: any, res: any) => {
-        res.json({ temperature: storeData.temperature });
+    app.get('/temperatura', (req: any, res: any) => {
+        res.json({ temperatura: storeData.temperatura });
     })
 
     app.get('/persianas', (req: any, res: any) => {
