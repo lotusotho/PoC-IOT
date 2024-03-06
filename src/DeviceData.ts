@@ -1,4 +1,4 @@
-export class ClientData {
+export class DeviceData {
     private _temperatura: number;
     private _persianas: number;
     private _luz: number;

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ClientData } from './ClientData';
+import { DeviceData } from './DeviceData';
 
 const express = require('express');
 
@@ -8,7 +8,7 @@ const bodyParse = require('body-parser');
 const app = express();
 app.use(bodyParse.json());
 
-export const storeData = new ClientData(0, 0, 0, [0, 0]);
+export const storeData = new DeviceData(0, 0, 0, [0, 0]);
 
 export function Server() {
     // Request POST
