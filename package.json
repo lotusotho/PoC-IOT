@@ -13,5 +13,5 @@
   "scripts": {
     "start": "nodemon"
   },
-  "main": "src/Index.ts"
+  "main": "src/Main.ts"
 }
